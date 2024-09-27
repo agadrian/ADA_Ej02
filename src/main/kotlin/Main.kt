@@ -15,8 +15,8 @@ Una funci√≥n que reciba una lista de diccionarios como la que devuelve la funci√
 fun main() {
     val path = Path.of("src/main/resources")
     val cal = Calificaciones(path)
-
     val dict = cal.createDicc()
+
     cal.addNota(dict)
     cal.aprobadosSuspensos(dict)
 

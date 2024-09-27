@@ -51,6 +51,7 @@ class Calificaciones(private val path: Path) {
     }
 
 
+
     /**
      * Una función que reciba una lista de diccionarios como la que devuelve la función anterior y añada a cada diccionario un nuevo par con la nota final del curso. El peso de cada parcial de teoría en la nota final es de un 30% mientras que el peso del examen de prácticas es de un 40%.
      */
@@ -74,11 +75,9 @@ class Calificaciones(private val path: Path) {
      * Una función que reciba una lista de diccionarios como la que devuelve la función anterior y devuelva dos listas, una con los alumnos aprobados y otra con los alumnos suspensos. Para aprobar el curso, la asistencia tiene que ser mayor o igual que el 75%, la nota de los exámenes parciales y de prácticas mayor o igual que 4 y la nota final mayor o igual que 5.
      */
     fun aprobadosSuspensos(listaDicc: List<MutableMap<String, Any>>){
-
         val notaMin = 4
         val asistenciaMin = 75
         val notaFinMin = 5
-
 
         val aprobados = listaDicc.filter { dict ->
             dict["Notafinal"].toString().toDouble() >= notaFinMin
@@ -88,7 +87,6 @@ class Calificaciones(private val path: Path) {
                     && dict["Practicas"].toString().toDouble() >= notaMin
         }
 
-
         val suspensos = listaDicc.filter { dict ->
             dict["Notafinal"].toString().toDouble() < notaFinMin
                     || dict["Asistencia"].toString().toInt() < asistenciaMin
@@ -97,8 +95,7 @@ class Calificaciones(private val path: Path) {
                     || dict["Practicas"].toString().toDouble() < notaMin
         }
 
-
-          //val suspensos = listaDicc.minus(aprobados)   ??????????
+        // val suspensos = listaDicc.minus(aprobados)  ??????????
 
         println("${aprobados}\n${suspensos}")
     }
