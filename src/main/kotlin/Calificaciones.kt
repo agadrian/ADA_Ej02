@@ -29,11 +29,12 @@ class Calificaciones(private val path: Path) {
                     val dicc = mutableMapOf<String,Any>()
                     val listaLinea = linea.replace(",",".").replace("%", "").split(";").toMutableList()
 
+                    // Reemplazar vacios por 0
                     listaLinea.forEachIndexed {index, dato ->
                         if (dato.isBlank()) listaLinea[index] = "0"
                     }
 
-                    // Añadimos al diccionario
+                    // Añadimos al diccionario la cabecera como clave y cada item de la lista como valor
                     for (i in cabecera.indices){
                         dicc[cabecera[i]] = listaLinea[i]
                     }
@@ -66,6 +67,8 @@ class Calificaciones(private val path: Path) {
 
             dict["Notafinal"] = nota
         }
+
+        println(listaDicc)
         return listaDicc
     }
 
@@ -74,7 +77,7 @@ class Calificaciones(private val path: Path) {
     /**
      * Una función que reciba una lista de diccionarios como la que devuelve la función anterior y devuelva dos listas, una con los alumnos aprobados y otra con los alumnos suspensos. Para aprobar el curso, la asistencia tiene que ser mayor o igual que el 75%, la nota de los exámenes parciales y de prácticas mayor o igual que 4 y la nota final mayor o igual que 5.
      */
-    fun aprobadosSuspensos(listaDicc: List<MutableMap<String, Any>>){
+    fun aprobadosSuspensos(listaDicc: List<MutableMap<String, Any>>): Pair<List<MutableMap<String, Any>>, List<MutableMap<String, Any>>>{
         val notaMin = 4
         val asistenciaMin = 75
         val notaFinMin = 5
@@ -98,6 +101,8 @@ class Calificaciones(private val path: Path) {
         // val suspensos = listaDicc.minus(aprobados)  ??????????
 
         println("${aprobados}\n${suspensos}")
+
+        return Pair(aprobados,suspensos)
     }
 
 

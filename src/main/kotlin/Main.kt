@@ -18,6 +18,6 @@ fun main() {
     val dict = cal.createDicc()
 
     cal.addNota(dict)
-    cal.aprobadosSuspensos(dict)
+    //cal.aprobadosSuspensos(dict)
 
 }
